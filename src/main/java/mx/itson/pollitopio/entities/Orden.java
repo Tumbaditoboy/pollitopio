@@ -12,21 +12,7 @@ import java.util.List;
  * @author castr
  */
 public class Orden {
-
-    /**
-     * @return the cliente
-     */
-    public String getCliente() {
-        return cliente;
-    }
-
-    /**
-     * @param cliente the cliente to set
-     */
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
-
+    
     /**
      * @return the fecha
      */
@@ -69,7 +55,6 @@ public class Orden {
         this.productos = productos;
     }
     
-    private String cliente;
     private Date fecha;
     private String estado;
     private List<Producto> productos;
