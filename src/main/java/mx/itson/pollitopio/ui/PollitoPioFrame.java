@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import javax.swing.JFileChooser;
 
+
 /**
  *
  * @author dzlan
@@ -43,6 +44,10 @@ public class PollitoPioFrame extends javax.swing.JFrame {
         labelCorreoCliente = new javax.swing.JLabel();
         labelTelefonoCliente = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        labelFechaOrden = new javax.swing.JLabel();
+        labelEstadoOrden = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +78,24 @@ public class PollitoPioFrame extends javax.swing.JFrame {
 
         labelTelefonoCliente.setText("Teléfono");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Orden");
+
+        labelFechaOrden.setText("Fecha");
+
+        labelEstadoOrden.setText("Estado");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Precio", "Cantidad"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,23 +111,35 @@ public class PollitoPioFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(labelNombreEstablecimiento)
-                    .addComponent(labelDireccionEstablecimiento)
-                    .addComponent(labelTelefonoEstablecimiento))
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTelefonoCliente)
-                    .addComponent(labelCorreoCliente)
-                    .addComponent(labelDireccionCliente)
-                    .addComponent(labelNombreCliente)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel4)))
-                .addGap(251, 251, 251))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(labelNombreEstablecimiento)
+                            .addComponent(labelDireccionEstablecimiento)
+                            .addComponent(labelTelefonoEstablecimiento))
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTelefonoCliente)
+                            .addComponent(labelCorreoCliente)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelDireccionCliente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelEstadoOrden))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelNombreCliente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelFechaOrden))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(95, 95, 95)
+                                    .addComponent(jLabel4))))
+                        .addGap(250, 250, 250))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,18 +156,22 @@ public class PollitoPioFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombreEstablecimiento)
-                    .addComponent(labelNombreCliente))
+                    .addComponent(labelNombreCliente)
+                    .addComponent(labelFechaOrden))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDireccionEstablecimiento)
-                    .addComponent(labelDireccionCliente))
+                    .addComponent(labelDireccionCliente)
+                    .addComponent(labelEstadoOrden))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefonoEstablecimiento)
                     .addComponent(labelCorreoCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelTelefonoCliente)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,6 +188,15 @@ public class PollitoPioFrame extends javax.swing.JFrame {
                byte fileBytes[] = Files.readAllBytes(file.toPath());
                String contenido = new String(fileBytes, StandardCharsets.UTF_8);
             }
+            
+          
+            
+            
+            
+            
+            
+            
+            
             } catch (Exception ex){
             System.err.println(ex.getMessage());
                     }
@@ -196,9 +243,13 @@ public class PollitoPioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelCorreoCliente;
     private javax.swing.JLabel labelDireccionCliente;
     private javax.swing.JLabel labelDireccionEstablecimiento;
+    private javax.swing.JLabel labelEstadoOrden;
+    private javax.swing.JLabel labelFechaOrden;
     private javax.swing.JLabel labelNombreCliente;
     private javax.swing.JLabel labelNombreEstablecimiento;
     private javax.swing.JLabel labelTelefonoCliente;
