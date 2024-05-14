@@ -10,4 +10,8 @@ package mx.itson.pollitopio.entities;
  */
 public class Cliente {
     
+    private String nombre;
+    private String direccion;
+    private String correo;
+    private String telefono;
 }

@@ -10,4 +10,7 @@ package mx.itson.pollitopio.entities;
  */
 public class Pedido {
     
+    private Establecimiento establecimiento;
+    private Cliente cliente;
+    private Orden orden;
 }

@@ -4,10 +4,18 @@
  */
 package mx.itson.pollitopio.entities;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author castr
  */
 public class Orden {
+    
+    private String cliente;
+    private Date fecha;
+    private String estado;
+    private List<Producto> productos;
     
 }

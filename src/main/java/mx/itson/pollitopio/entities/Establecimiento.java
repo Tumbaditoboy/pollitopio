@@ -10,4 +10,7 @@ package mx.itson.pollitopio.entities;
  */
 public class Establecimiento {
     
+    private String name;
+    private String direccion;
+    private String telefono;
 }
