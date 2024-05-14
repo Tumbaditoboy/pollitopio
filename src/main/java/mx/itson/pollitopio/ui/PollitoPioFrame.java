@@ -196,7 +196,6 @@ public class PollitoPioFrame extends javax.swing.JFrame {
             
             
             
-            
             } catch (Exception ex){
             System.err.println(ex.getMessage());
                     }
