@@ -4,6 +4,8 @@
  */
 package mx.itson.pollitopio.entities;
 
+import com.google.gson.Gson;
+
 /**
  *
  * @author castr
@@ -56,7 +58,17 @@ public class Pedido {
     private Cliente cliente;
     private Orden orden;
     
-    
+    public Pedido deserializar (String json){
+        Pedido pedido = new Pedido();
+        try{
+            pedido = new Gson().fromJson(json, Pedido.class);
+        }catch (Exception ex){
+            System.err.println("Ocurrió un error al deserializar" + ex.getMessage());
+            
+        }
+        
+        return pedido; 
+    }
     
    
 }
