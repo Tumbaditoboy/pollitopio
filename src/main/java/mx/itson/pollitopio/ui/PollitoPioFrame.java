@@ -32,6 +32,11 @@ public class PollitoPioFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonSeleccionar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        labelNombreEstablecimiento = new javax.swing.JLabel();
+        labelDireccionEstablecimiento = new javax.swing.JLabel();
+        labelTelefonoEstablecimiento = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,21 +47,55 @@ public class PollitoPioFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Establecimiento");
+
+        labelNombreEstablecimiento.setText("Nombre");
+
+        labelDireccionEstablecimiento.setText("Dirección");
+
+        labelTelefonoEstablecimiento.setText("Teléfono");
+
+        jLabel2.setText("Pedido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(buttonSeleccionar)
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(buttonSeleccionar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1)
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel2)))
+                .addContainerGap(353, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTelefonoEstablecimiento)
+                    .addComponent(labelNombreEstablecimiento)
+                    .addComponent(labelDireccionEstablecimiento))
+                .addGap(522, 522, 522))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(buttonSeleccionar)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(71, 71, 71)
+                .addComponent(labelNombreEstablecimiento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelDireccionEstablecimiento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelTelefonoEstablecimiento)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,5 +154,10 @@ public class PollitoPioFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSeleccionar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel labelDireccionEstablecimiento;
+    private javax.swing.JLabel labelNombreEstablecimiento;
+    private javax.swing.JLabel labelTelefonoEstablecimiento;
     // End of variables declaration//GEN-END:variables
 }
