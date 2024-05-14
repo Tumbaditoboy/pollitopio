@@ -70,4 +70,5 @@ public class Cliente {
     private String direccion;
     private String correo;
     private String telefono;
+    //comentario
 }
