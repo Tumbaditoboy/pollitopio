@@ -1,0 +1,41 @@
+{
+    "establecimiento" : {
+        "nombre" : "Burguer King",
+        "direccion" : "Calle 24, avenida 9, Hermosillo Sonora",
+        "telefono" : "6621657822"
+    },
+    
+    "cliente" : {
+        "nombre" : "Nathanahel Ruben Cano Monge",
+        "direccion" : "Calle 13, avenida 6, Hermosillo Sonora",
+        "correo" : "elmastumbado@gmail.com" , 
+        "telefono" : "6621874511"
+    },
+    "orden": {
+        "fecha" : "2024-05-11T20:11:40Z", 
+        "estado" : "Entregado",
+        "distancia" : 6,
+        "productos" : [
+        {
+            "nombre" : "BK stacker",
+            "descripcion" : "Hamburguesa con 3 carnes, queso y tocino",
+            "precio": 150.5 ,
+            "cantidad" : 2
+
+        },
+        {
+            "nombre" : "Refresco GDE",
+            "descripcion" : "Un refresco a elección, de 600 ml",
+            "precio" : 25.5 ,
+            "cantidad": 1
+        }, 
+        {
+            "nombre" : "Papas sorpresa" , 
+            "descripcion" : "Una caja de papas fritas de 80 g" , 
+            "precio" : 45.5 , 
+            "cantidad" : 3
+
+        }
+    ]
+}
+}

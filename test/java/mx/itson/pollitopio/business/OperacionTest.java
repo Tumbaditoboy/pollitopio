@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author dzlan
+ * @author darkheaven
  */
 public class OperacionTest {
     
