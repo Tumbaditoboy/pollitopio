@@ -8,10 +8,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
+ * Clase de entidades referente a la información de la orden.
  * @author castr
  */
 public class Orden {
+
+    /**
+     * @return the distancia
+     */
+    public int getDistancia() {
+        return distancia;
+    }
+
+    /**
+     * @param distancia the distancia to set
+     */
+    public void setDistancia(int distancia) {
+        this.distancia = distancia;
+    }
     
     /**
      * @return the fecha
@@ -57,6 +71,7 @@ public class Orden {
     
     private Date fecha;
     private String estado;
+    private int distancia;
     private List<Producto> productos;
     
 }

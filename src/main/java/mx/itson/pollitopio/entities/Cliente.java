@@ -5,12 +5,14 @@
 package mx.itson.pollitopio.entities;
 
 /**
- *
+ * Clase de entidades referentes a información del cliente.
+ * 
  * @author castr
  */
 public class Cliente {
 
     /**
+     * 
      * @return the nombre
      */
     public String getNombre() {
@@ -65,10 +67,10 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    private String nombre;
-    private String direccion;
-    private String correo;
-    private String telefono;
+
+   private String nombre;
+   private String direccion;
+   private String correo;
+   private String telefono;
     //comentario
 }

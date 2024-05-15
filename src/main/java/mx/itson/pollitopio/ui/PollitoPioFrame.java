@@ -7,7 +7,14 @@ package mx.itson.pollitopio.ui;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.pollitopio.business.Operacion;
+import mx.itson.pollitopio.entities.Pedido;
+import mx.itson.pollitopio.entities.*;
 
 
 /**
@@ -33,12 +40,12 @@ public class PollitoPioFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonSeleccionar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        establecimiento = new javax.swing.JLabel();
         labelNombreEstablecimiento = new javax.swing.JLabel();
         labelDireccionEstablecimiento = new javax.swing.JLabel();
         labelTelefonoEstablecimiento = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelCliente = new javax.swing.JLabel();
         labelNombreCliente = new javax.swing.JLabel();
         labelDireccionCliente = new javax.swing.JLabel();
         labelCorreoCliente = new javax.swing.JLabel();
@@ -47,7 +54,9 @@ public class PollitoPioFrame extends javax.swing.JFrame {
         labelFechaOrden = new javax.swing.JLabel();
         labelEstadoOrden = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaProductos = new javax.swing.JTable();
+        labelTotal = new javax.swing.JLabel();
+        labelEnvio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +67,7 @@ public class PollitoPioFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Establecimiento");
+        establecimiento.setText("Establecimiento");
 
         labelNombreEstablecimiento.setText("Nombre");
 
@@ -68,7 +77,7 @@ public class PollitoPioFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Pedido");
 
-        jLabel3.setText("Cliente");
+        labelCliente.setText("Cliente");
 
         labelNombreCliente.setText("Nombre");
 
@@ -84,7 +93,7 @@ public class PollitoPioFrame extends javax.swing.JFrame {
 
         labelEstadoOrden.setText("Estado");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,51 +104,54 @@ public class PollitoPioFrame extends javax.swing.JFrame {
                 "Nombre", "Descripción", "Precio", "Cantidad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaProductos);
+
+        labelTotal.setText("Total:");
+
+        labelEnvio.setText("Envío:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(buttonSeleccionar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(establecimiento)
+                            .addComponent(labelTelefonoEstablecimiento)
                             .addComponent(labelNombreEstablecimiento)
-                            .addComponent(labelDireccionEstablecimiento)
-                            .addComponent(labelTelefonoEstablecimiento))
+                            .addComponent(labelDireccionEstablecimiento))
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTelefonoCliente)
-                            .addComponent(labelCorreoCliente)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labelDireccionCliente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelEstadoOrden))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labelNombreCliente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelFechaOrden))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(95, 95, 95)
-                                    .addComponent(jLabel4))))
-                        .addGap(250, 250, 250))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(labelCorreoCliente)
+                                    .addGap(12, 12, 12))
+                                .addComponent(labelDireccionCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(labelCliente)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(labelTelefonoCliente)
+                                    .addGap(1, 1, 1)))
+                            .addComponent(labelNombreCliente)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116))))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelEstadoOrden, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelFechaOrden, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelTotal)
+                                .addComponent(labelEnvio))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(buttonSeleccionar)))
+                .addGap(429, 429, 429))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,51 +161,96 @@ public class PollitoPioFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNombreEstablecimiento)
-                    .addComponent(labelNombreCliente)
-                    .addComponent(labelFechaOrden))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDireccionEstablecimiento)
-                    .addComponent(labelDireccionCliente)
-                    .addComponent(labelEstadoOrden))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTelefonoEstablecimiento)
-                    .addComponent(labelCorreoCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelTelefonoCliente)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(establecimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelNombreEstablecimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelDireccionEstablecimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTelefonoEstablecimiento))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelNombreCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelDireccionCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelCorreoCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTelefonoCliente)))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelFechaOrden)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelEstadoOrden)
+                        .addGap(48, 48, 48)
+                        .addComponent(labelEnvio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTotal)
+                        .addGap(66, 66, 66))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeleccionarActionPerformed
-       try{
+       //TODO: añadir un label para el envío.
+        try{
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
             
-            if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
-               File file = fileChooser.getSelectedFile();
-               
-               byte fileBytes[] = Files.readAllBytes(file.toPath());
-               String contenido = new String(fileBytes, StandardCharsets.UTF_8);
+            
+            if(fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                
+                byte fileBytes[] = Files.readAllBytes(file.toPath());
+                String content = new String(fileBytes,StandardCharsets.UTF_8);
+                Pedido pedido = new Pedido().deserializar(content);
+                
+           DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy H:mm:ss", new Locale("ES","es"));     
+            
+           labelNombreEstablecimiento.setText("Nombre: "+pedido.getEstablecimiento().getNombre());
+            labelDireccionEstablecimiento.setText("Direccion: "+pedido.getEstablecimiento().getDireccion());
+            labelTelefonoEstablecimiento.setText("Telefono: "+pedido.getEstablecimiento().getTelefono());
+            
+            labelNombreCliente.setText("Nombre: "+pedido.getCliente().getNombre());
+            labelDireccionCliente.setText("Direccion: "+pedido.getCliente().getDireccion());
+            labelCorreoCliente.setText("Correo: "+pedido.getCliente().getCorreo());
+            labelTelefonoCliente.setText("Telefono: "+pedido.getCliente().getTelefono());
+            
+            labelFechaOrden.setText("Fecha: "+dateFormat.format(pedido.getOrden().getFecha()));
+            labelEstadoOrden.setText("Estado: "+pedido.getOrden().getEstado());
+            
+            DefaultTableModel model = (DefaultTableModel)tablaProductos.getModel();
+                model.setColumnCount(0);
+                model.setRowCount(0);
+                model.addColumn("Producto");
+                model.addColumn("Descripcion");
+                model.addColumn("Precio");
+                model.addColumn("Cantidad");
+            
+            double total = 0;
+                
+                for (Producto i : pedido.getOrden().getProductos()){
+                model.addRow(new Object[]{
+                    i.getNombre(),
+                    i.getDescripcion(),
+                    i.getPrecio(),
+                    i.getCantidad()
+                });
+            total += Operacion.total(i.getPrecio(), i.getCantidad());
+                }
+            labelEnvio.setText("Envio: " +Operacion.envio(pedido.getOrden().getDistancia()));
+            labelTotal.setText("Total: "+(total+Operacion.envio(pedido.getOrden().getDistancia())));
             }
-            
-          
-            
-            
-            
-            
             
             
             } catch (Exception ex){
@@ -238,20 +295,22 @@ public class PollitoPioFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSeleccionar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel establecimiento;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelCorreoCliente;
     private javax.swing.JLabel labelDireccionCliente;
     private javax.swing.JLabel labelDireccionEstablecimiento;
+    private javax.swing.JLabel labelEnvio;
     private javax.swing.JLabel labelEstadoOrden;
     private javax.swing.JLabel labelFechaOrden;
     private javax.swing.JLabel labelNombreCliente;
     private javax.swing.JLabel labelNombreEstablecimiento;
     private javax.swing.JLabel labelTelefonoCliente;
     private javax.swing.JLabel labelTelefonoEstablecimiento;
+    private javax.swing.JLabel labelTotal;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 }

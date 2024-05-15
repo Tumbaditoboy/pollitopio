@@ -5,7 +5,7 @@
 package mx.itson.pollitopio.entities;
 
 /**
- *
+ * Clase de entidades referentes a la información del producto.
  * @author castr
  */
 public class Producto {

@@ -5,23 +5,23 @@
 package mx.itson.pollitopio.entities;
 
 /**
- *
+ * Clase de entidades referente a la informacón del establecimiento.
  * @author dzlan
  */
 public class Establecimiento {
 
     /**
-     * @return the name
+     * @return the nombre
      */
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * @param name the name to set
+     * @param nombre the nombre to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     /**
@@ -51,8 +51,7 @@ public class Establecimiento {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    private String name;
+    private String nombre;
     private String direccion;
     private String telefono;
 }
